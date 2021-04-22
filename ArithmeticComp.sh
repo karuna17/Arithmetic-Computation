@@ -2,5 +2,5 @@
 
 echo "take inputs for a,b,c: "
 read a b c
-result=$((c+a/b))
+result=$((a%b+c))
 echo $result
