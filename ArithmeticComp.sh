@@ -1,7 +1,7 @@
 #!/bin/bash -x
 
 declare -A AllResults
-declare -a Array
+declare -a arr
 
 echo "take inputs for a,b,c: "
 read a b c
@@ -15,8 +15,23 @@ AllResults[op2]=$res2
 AllResults[op3]=$res3
 AllResults[op4]=$res4
 
-echo "Dictionary: " ${AllResults[@]}
 
-Array[0]=${AllResults[@]}
+arr=( $res1 $res2 $res3 $res4 )
+length=${#arr[@]}
+temp=0
+echo "Before Sorting Array: " ${arr[@]}
 
-echo "Array: " ${Array[@]}
+for ((i=0; i<$length; i++ ))
+do
+ for ((j=$i+1; j<$length; j++ ))
+ do
+  if [ ${arr[i]} -lt ${arr[j]} ]
+  then
+   temp=${arr[i]}
+   arr[i]=${arr[j]}
+   arr[j]=$temp
+  fi
+ done
+done
+
+echo "After Sorting: " ${arr[@]}
